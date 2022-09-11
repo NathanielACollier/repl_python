@@ -1,4 +1,4 @@
-import { createApp } from 'https://unpkg.com/vue@3?module';
+import { createApp } from 'vue';
 
 createApp({
     data() {
