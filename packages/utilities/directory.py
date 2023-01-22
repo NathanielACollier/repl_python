@@ -7,7 +7,7 @@ def getRoot():
     # Now need to find the 'repl_python' folder in there
     pieces = utilitiesFolderPath.split('/')
     # find index of our root folder
-    rootPos = [i for i in range(len(pieces)) if pieces[i].lower() == "repl_python"]
+    rootPos = [i for i in range(len(pieces)) if pieces[i].lower() == "repl_python"][0]
     # take the pieces from 0 to rootPos
     rootPieces = pieces[0-rootPos]
     rootPath = os.path.join("/", rootPieces)
