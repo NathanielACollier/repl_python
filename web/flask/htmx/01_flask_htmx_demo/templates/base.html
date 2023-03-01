@@ -1,6 +1,10 @@
 <!doctype html>
 <title>{% block title %}{% endblock %}</title>
 <nav>
+  <!-- 
+    You can display a block you've defined with the self.title() or whatever you named your block
+    + see: https://stackoverflow.com/questions/20929241/how-to-repeat-a-block-in-a-jinja2-template
+  -->
   <h1>{{ self.title() }}</h1>
   <ul>
     <li><a href='general/test1'>Test 1</a></li>
