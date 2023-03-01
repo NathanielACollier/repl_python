@@ -21,7 +21,6 @@ def static_proxy(path):
 
 @app.route('/', methods=['GET'])
 def redirect_to_index():
-    #return send_from_directory(root, 'index.html')
-    return render_template("pages/general/test1.html")
+    return send_from_directory(root, 'index.html')
 
 
