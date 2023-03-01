@@ -1,4 +1,4 @@
-from flask import Flask, send_from_directory
+from flask import Flask, send_from_directory, render_template
 import os
 from controllers.general import general_bp
 
@@ -21,6 +21,7 @@ def static_proxy(path):
 
 @app.route('/', methods=['GET'])
 def redirect_to_index():
-    return send_from_directory(root, 'index.html')
+    #return send_from_directory(root, 'index.html')
+    return render_template("pages/general/test1")
 
 
