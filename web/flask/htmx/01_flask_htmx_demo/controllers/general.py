@@ -21,3 +21,8 @@ def getButtonClick1():
     return f'''
         <span style='color:red;font-weight:bold;'>You clicked the button {buttonClickCounter}</span>
     '''
+
+@general_bp.route("/test1")
+def getTest1():
+    return render_template("pages/general/test1.html")
+

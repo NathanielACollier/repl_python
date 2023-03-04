@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+General - Test 1
+{% endblock %}
+
+{% block content %}
+Current Time is:
+<div hx-get="general/currentTime"
+    hx-trigger="every 1s"
+    hx-swap="innerHtml">
+</div>
+
+Button Click Test  <button hx-trigger="click" hx-get="general/buttonClick1" hx-target="#buttonDisplayDiv" hx-swap="innerHtml">Click Me</button>
+<div id="buttonDisplayDiv"></div>
+
+</body>
+{% endblock %}
