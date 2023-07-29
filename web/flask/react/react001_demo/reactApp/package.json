@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start":"npx esbuild app.tsx --serve",
-    "publish":"npx esbuild app.tsx --bundle --outdir=../flaskServer/www/dist"
+    "publish":"npx esbuild app.tsx --bundle --minify --outdir=../flaskServer/www/dist"
   },
   "dependencies": {
     "@types/react": "^18.2.17",
