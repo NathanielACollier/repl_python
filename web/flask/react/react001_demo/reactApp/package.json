@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start":"npx esbuild app.tsx --serve"
+    "start":"npx esbuild app.tsx --serve",
+    "publish":"npx esbuild app.tsx --bundle --servedir=../flaskServer/www/ --outdir=../flaskServer/www/js"
   },
   "dependencies": {
     "@types/react": "^18.2.17",
