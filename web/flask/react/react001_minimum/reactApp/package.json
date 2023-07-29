@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start":"npx esbuild app.tsx --serve",
+    "start":"npx esbuild app.tsx --sourcemap --bundle --watch --outdir=../flaskServer/www/dist",
     "publish":"npx esbuild app.tsx --bundle --minify --outdir=../flaskServer/www/dist"
   },
   "dependencies": {
