@@ -59,45 +59,9 @@
                 "namedChunks": true
               }
             },
-            "defaultConfiguration": "production"
-          },
-          "serve": {
-            "builder": "@angular-devkit/build-angular:dev-server",
-            "configurations": {
-              "production": {
-                "browserTarget": "angularAppTest:build:production"
-              },
-              "development": {
-                "browserTarget": "angularAppTest:build:development"
-              }
-            },
             "defaultConfiguration": "development"
-          },
-          "extract-i18n": {
-            "builder": "@angular-devkit/build-angular:extract-i18n",
-            "options": {
-              "browserTarget": "angularAppTest:build"
-            }
-          },
-          "test": {
-            "builder": "@angular-devkit/build-angular:karma",
-            "options": {
-              "polyfills": [
-                "zone.js",
-                "zone.js/testing"
-              ],
-              "tsConfig": "tsconfig.spec.json",
-              "inlineStyleLanguage": "scss",
-              "assets": [
-                "src/favicon.ico",
-                "src/assets"
-              ],
-              "styles": [
-                "src/styles.scss"
-              ],
-              "scripts": []
-            }
           }
+
         }
       }
     }
