@@ -1,0 +1,9 @@
+{
+  "name": "vueapp",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {},
+  "dependencies": {
+    "vue-cli": "^2.9.6"
+  }
+}
