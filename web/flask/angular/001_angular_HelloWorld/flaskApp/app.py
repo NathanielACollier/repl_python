@@ -15,7 +15,9 @@ root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "www")
 #app.register_blueprint(general_bp, url_prefix="/general")
 
 @app.route('/<path:path>', methods=['GET'])
-def static_proxy(path):
+def static_proxy(path: str):
+    if path.strip().endswith("/"):
+        return send_from_directory(root, f'{path}/index.html')
     return send_from_directory(root, path)
 
 
