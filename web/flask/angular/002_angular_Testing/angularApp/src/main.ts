@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app.component';
 import {ButtonCounterComponent} from './components/experiments/001_ButtonCounter/ButtonCounter.component'
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {path: '', component: ButtonCounterComponent  } // this is how you do an empty route
@@ -24,7 +25,7 @@ export class AppRoutingModule { }
     AppComponent, ButtonCounterComponent
   ],
   imports: [
-    BrowserModule, AppRoutingModule
+    BrowserModule, AppRoutingModule, HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
