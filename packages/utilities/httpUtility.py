@@ -21,8 +21,9 @@ class nac_http_RequestSession(requests.Session):
         super().__init__()
         self.hooks['response'] = [self.log_response]
 
-    def log_response(resp, *args, **kwargs):
-        curlCommandText = curlify.to_curl(resp)
+    def log_response(self, *args, **kwargs):
+        response = args[0]
+        curlCommandText = curlify.to_curl(response)
         logging.info(f"""-----------
 curl command
 ------------
