@@ -23,7 +23,7 @@ class nac_http_RequestSession(requests.Session):
 
     def log_response(self, *args, **kwargs):
         response = args[0]
-        curlCommandText = curlify.to_curl(response)
+        curlCommandText = curlify.to_curl(response.request)
         logging.info(f"""-----------
 curl command
 ------------
