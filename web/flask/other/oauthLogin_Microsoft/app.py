@@ -4,9 +4,10 @@ from flask_oauthlib.client import OAuth
 import os
 
 # -- Run --
-# pipenv shell
-# pipenv install
-# python3 -m flask run
+# python -m venv venv
+# source venv/bin/activate
+# python -m pip install -r requirements.txt
+# python -m flask run
 
 # -- NOtes --
 # original code from: https://medium.com/@tempmailwithpassword/integrate-flask-web-apps-with-microsoft-365-login-ae171d7b2164
