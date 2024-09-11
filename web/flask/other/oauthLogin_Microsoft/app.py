@@ -2,10 +2,12 @@
 from flask import Flask, redirect, url_for, session
 from flask_oauthlib.client import OAuth
 import os
+import nac_settings
 
 # -- Run --
 # python -m venv venv
 # source venv/bin/activate
+# set -o allexport; source .env; set +o allexport
 # python -m pip install -r requirements.txt
 # python -m flask run
 
