@@ -1,13 +1,10 @@
 
 from flask import Flask, redirect, url_for, session
-from flask_oauthlib.client import OAuth
+from authlib.integrations.flask_client import OAuth
 import os
 import nac_settings
 
 # -- Run --
-# python -m venv venv
-# source venv/bin/activate
-# set -o allexport; source .env; set +o allexport
 # python -m pip install -r requirements.txt
 # python -m flask run
 
@@ -22,7 +19,7 @@ microsoft = oauth.remote_app(
     'microsoft',
     consumer_key='YOUR_APP_ID',
     consumer_secret='YOUR_APP_SECRET',
-    request_token_params={'scope': 'User.Read'}
+    request_token_params={'scope': 'User.Read'},
     base_url='https://graph.microsoft.com/v1.0/',
     request_token_url=None,
     access_token_method='POST',
