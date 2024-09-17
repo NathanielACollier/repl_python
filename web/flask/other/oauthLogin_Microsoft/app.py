@@ -12,6 +12,7 @@ import nac_settings
 # original code from: https://medium.com/@tempmailwithpassword/integrate-flask-web-apps-with-microsoft-365-login-ae171d7b2164
 
 app = Flask(__name__)
+app.secret_key = os.urandom(24) # This is critical because the authlib uses session, and you have to have a secret_key set for session
 
 oauth = OAuth(app)
 
