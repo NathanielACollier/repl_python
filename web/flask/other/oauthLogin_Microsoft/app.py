@@ -15,37 +15,35 @@ app = Flask(__name__)
 
 oauth = OAuth(app)
 
-microsoft = oauth.remote_app(
-    'microsoft',
-    consumer_key='YOUR_APP_ID',
-    consumer_secret='YOUR_APP_SECRET',
-    request_token_params={'scope': 'User.Read'},
-    base_url='https://graph.microsoft.com/v1.0/',
-    request_token_url=None,
-    access_token_method='POST',
+oauth.register(
+    name='microsoft',
+    client_id=nac_settings.local.get("TestAuthAzureAppID"),
+    client_secret=nac_settings.local.get("TestAuthAzureClientSecret"),
+    authorize_url='https://login.microsoftonline.com/common/oauth2/v2.0/authorize',
+    authorize_params=None,
     access_token_url='https://login.microsoftonline.com/common/oauth2/v2.0/token',
-    authorize_url='https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
+    access_token_params=None,
+    refresh_token_url=None,
+    redirect_uri=os.getenv('REDIRECT_URI'),
+    client_kwargs={'scope': 'User.Read'}
 )
+
+
 @app.route('/')
 def index():
     return '<h1>Welcome to the Flask App</h1>' + '<a href="/login">Login with Microsoft</a>'
 
 @app.route('/login')
 def login():
-    return microsoft.authorize(callback=url_for('authorized', _external=True))
+    redirect_uri = url_for('auth', _external=True)
+    return oauth.microsoft.authorize_redirect(redirect_uri)
 
-@app.route('/login/authorized')
-def authorized():
-    response = microsoft.authorized_response()
-    if response is None or response.get('access_token') is None:
-        return 'Access denied: reason={0} error={1}'.format(
-            request.args['error'], request.args['error_description'])
-    session['oauth_token'] = (response['access_token'], '')
-    return 'Logged in as id={0}'.format(session['oauth_token'])
-
-@microsoft.tokengetter
-def get_microsoft_oauth_token():
-    return session.get('oauth_token')
+@app.route('/auth')
+def auth():
+    token = oauth.microsoft.authorize_access_token()
+    user = oauth.microsoft.parse_id_token(token)
+    session['user'] = user
+    return f'Hello, {user["name"]}!'
 
 if __name__ == '__main__':
     app.run(debug=True)
