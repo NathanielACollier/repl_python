@@ -15,7 +15,9 @@ app.secret_key = os.urandom(24) # This is critical because the authlib uses sess
 settings = {
     "msClientId": nac_settings.local.get("TestAuthAzureAppID"),
     "msClientSecret": nac_settings.local.get("TestAuthAzureClientSecret"),
-    "redirectUri":"http://localhost:5000/auth"
+    "redirectUri":"http://localhost:5000/auth",
+    "tenant": "common",
+    "graphScope":"User.Read"
 }
 
 @app.route('/')
@@ -25,13 +27,13 @@ def index():
 @app.route('/msLogin')
 def login():
     redirect_uri = url_for('codeInput', _external=True)
-    url = "https://login.microsoftonline.com/aecc.com/oauth2/authorize"
+    url = f"https://login.microsoftonline.com/{settings["tenant"]}/oauth2/v2.0/authorize"
     params = {
         "client_id": settings["msClientId"],
         "response_type": "code",
         "redirect_uri": redirect_uri,
         "response_mode":"query",
-        "resource":"https://graph.microsoft.com",
+        "scope": settings["graphScope"],
         "state":""
     }
 
@@ -57,7 +59,7 @@ def codeInput():
 def getToken(code: str)-> str:
     redirect_uri = url_for('codeInput', _external=True)
 
-    resp = requests.post("https://login.microsoftonline.com/aecc.com/oauth2/token",
+    resp = requests.post(f"https://login.microsoftonline.com/{settings["tenant"]}/oauth2/token",
                     data={
                         "grant_type": "authorization_code",
                         "client_id": settings["msClientId"],
